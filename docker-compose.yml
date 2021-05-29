@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  async_api:
+    container_name: async-api
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    env_file:
+      - .env
+    command: api
+    ports:
+      - 8000:8000
+    networks:
+      - api
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    container_name: async-api-postrges
+    image: postgres
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - 5432:5432
+    networks:
+      - api
+
+  redis:
+    container_name: async-api-redis
+    image: "redis:alpine"
+    env_file:
+      - .env
+    ports:
+      - 6379:6379
+    networks:
+      - api
+
+networks:
+  api:
+    driver: bridge
+
+

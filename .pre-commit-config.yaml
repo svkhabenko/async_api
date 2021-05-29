@@ -1,0 +1,53 @@
+repos:
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.6.4
+    hooks:
+      - id: isort
+        language_version: python3.8
+        exclude: >
+          (?x)^(
+            bin/.+|
+            db/.+|
+            doc/.+|
+            docker_compose/.+|
+            src/.+|
+            \.git/.+|
+            \.eggs/.+|
+            \.venv/.+
+          )$
+
+  - repo: https://github.com/ambv/black
+    rev: 20.8b1
+    hooks:
+      - id: black
+        language_version: python3.8
+        exclude: >
+          (?x)^(
+            bin/.+|
+            db/.+|
+            doc/.+|
+            docker_compose/.+|
+            src/.+|
+            \.git/.+|
+            \.eggs/.+|
+            \.venv/.+
+          )$
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
+      - id: flake8
+        language_version: python3.8
+        name: flake8
+        exclude: >
+          (?x)^(
+            bin/.+|
+            db/.+|
+            doc/.+|
+            docker_compose/.+|
+            src/.+|
+            etc/.+|
+            \.git/.+|
+            \.eggs/.+|
+            \.venv/.+
+          )$
